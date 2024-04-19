@@ -36,4 +36,8 @@ public class GroupMemberShip {
     private Long lastAddedOn;
 
     private Long removedOn;
+
+    private UUID addedBy;
+
+    private UUID removedBy;
 }
