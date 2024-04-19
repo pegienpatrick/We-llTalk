@@ -1,6 +1,9 @@
 package com.pegien.WellTalk.WellTalk.Utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pegien.WellTalk.WellTalk.Chat.Groups.entity.Group;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
@@ -69,5 +72,9 @@ public class MyUtils {
     public static Double roundCurrency(Double amount)
     {
         return Math.round(amount*100.00)/100.00;
+    }
+
+    public static ResponseEntity createErrorResponse(BindingResult result, Class groupClass) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(groupClass == String.class ? MyUtils.createErrorMessage(result):null);
     }
 }

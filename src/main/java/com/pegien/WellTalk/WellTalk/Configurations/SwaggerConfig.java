@@ -52,8 +52,8 @@ public class SwaggerConfig {
 
         Info info=new Info();
 
-        info.setTitle("High School Examination App");
-        info.setDescription("High School Examination App");
+        info.setTitle("WellTalk Chat App");
+        info.setDescription("WellTalk Chat App");
 
         Contact pato=new Contact()
                 .name("Patrick")
