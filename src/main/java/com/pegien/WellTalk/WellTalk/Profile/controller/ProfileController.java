@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/v1/profile")
@@ -56,6 +59,25 @@ public class ProfileController {
         else
             return ResponseEntity.ok(profile);
     }
+
+    @GetMapping("/userInfo/{userId}")
+    public ResponseEntity<Profile> userInfo(@PathVariable("userId")UUID userId)
+    {
+        return profilesService.userInfo(userId);
+    }
+
+    @GetMapping("/searchUser/{username}")
+    public ResponseEntity<Profile> searchUser(@PathVariable("username") String username)
+    {
+        return profilesService.searchUser(username);
+    }
+
+    @GetMapping("/listUsers")
+    public ResponseEntity<List<Profile>> listUsers()
+    {
+        return profilesService.listUsers();
+    }
+
 
 
 

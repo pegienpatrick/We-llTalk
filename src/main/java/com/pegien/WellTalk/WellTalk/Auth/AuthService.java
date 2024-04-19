@@ -157,5 +157,14 @@ public class AuthService {
             return "Success";
     }
 
+    public Long lastSeen(UUID profileId)
+    {
+        Long lastAccess;
+        lastAccess=tokenRepository.findLatestAccess(profileId);
+        if(lastAccess==null)
+            lastAccess=0L;
+        return  lastAccess;
+    }
+
 
 }

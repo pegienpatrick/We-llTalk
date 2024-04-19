@@ -261,12 +261,16 @@ public class GroupsService {
     }
 
     public ResponseEntity<List<Group>> listUserGroups() {
+        return ResponseEntity.ok(userGroups());
+    }
+
+    public List<Group> userGroups()
+    {
         Profile me=authService.getActiveProfile();
         List<Group> myGroups=new ArrayList<>();
         for(UUID groupId:groupMemberShipRepository.findGroupsByMember(me.getUid()))
             myGroups.add(groupRepository.findById(groupId).get());
-
-        return ResponseEntity.ok(myGroups);
+        return myGroups;
     }
 
     public ResponseEntity<List<Profile>> listGroupMembers(UUID groupId) {

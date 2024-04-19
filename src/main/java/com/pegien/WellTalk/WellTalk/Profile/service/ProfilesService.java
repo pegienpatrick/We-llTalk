@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -235,5 +236,25 @@ public class ProfilesService {
 
     public ResponseEntity<String> logOutAllDevices() {
         return ResponseEntity.ok(authService.logOutAllDevices());
+    }
+
+    public ResponseEntity<Profile> userInfo(UUID userId) {
+        Optional<Profile> optionalProfile=profileRepository.findById(userId);
+        if(optionalProfile.isPresent())
+            return ResponseEntity.ok(optionalProfile.get());
+        else
+            return ResponseEntity.status((HttpStatus.NOT_FOUND)).body(null);
+    }
+
+    public ResponseEntity<Profile> searchUser(String username) {
+        Optional<Profile> optionalProfile=profileRepository.findByUsernameIgnoreCase(username);
+        if(optionalProfile.isPresent())
+            return ResponseEntity.ok(optionalProfile.get());
+        else
+            return ResponseEntity.status((HttpStatus.NOT_FOUND)).body(null);
+    }
+
+    public ResponseEntity<List<Profile>> listUsers() {
+        return ResponseEntity.ok(profileRepository.findAll());
     }
 }
