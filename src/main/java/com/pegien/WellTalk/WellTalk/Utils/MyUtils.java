@@ -36,18 +36,16 @@ public class MyUtils {
 
     public static String createErrorMessage(BindingResult result) {
         try {
-        List<FieldError> fieldErrors = result.getFieldErrors();
+            List<FieldError> fieldErrors = result.getFieldErrors();
 
 
-        List<String> errorMessages = new ArrayList<>();
-        for (FieldError fError : fieldErrors) {
             Map<String, String> fieldErrorMap = new HashMap<>();
-            fieldErrorMap.put(fError.getField(), fError.getDefaultMessage());
-            errorMessages.add(objectMapper.writeValueAsString(fieldErrorMap));
-        }
+            for (FieldError fError : fieldErrors) {
+                fieldErrorMap.put(fError.getField(), fError.getDefaultMessage());
+            }
 
-        Map<String, List<String>> errorMessageMap = new HashMap<>();
-        errorMessageMap.put("fielderrors", errorMessages);
+            Map<String, Map<String,String>> errorMessageMap = new HashMap<>();
+            errorMessageMap.put("fielderrors", fieldErrorMap);
 
 
             return objectMapper.writeValueAsString(errorMessageMap);
