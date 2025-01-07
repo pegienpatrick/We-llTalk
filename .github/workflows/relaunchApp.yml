@@ -42,6 +42,7 @@ jobs:
           password: 'BazuBigMan'
           script: |
             cd /home/welltalk
+            git pull --rebase origin dev_backend
             # Find PID of any process using port 8081
             pid=$(lsof -t -i :8081)
             if [ -n "$pid" ]; then
