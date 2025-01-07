@@ -87,7 +87,7 @@ public class SecurityConfig {
                authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
                    authorizationManagerRequestMatcherRegistry.requestMatchers("/swagger-ui/**",
                            "/v3/api-docs/**"
-                           ,"/api/v1/profile/registerProfile"
+                           ,"/api/v1/profile/registerUser"
                            ,"/api/v1/profile/allRoles"
                            ,"/api/v1/profile/passwordReset"
                            ,"/api/v1/profile/smsForgotPassword"
