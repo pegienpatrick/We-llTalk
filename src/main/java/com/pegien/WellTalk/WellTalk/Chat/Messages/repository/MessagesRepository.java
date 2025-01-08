@@ -3,6 +3,7 @@ package com.pegien.WellTalk.WellTalk.Chat.Messages.repository;
 import com.pegien.WellTalk.WellTalk.Chat.Messages.entity.Message;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -25,10 +26,12 @@ public interface MessagesRepository extends JpaRepository<Message, UUID> {
     List<Message> findMessagesWith(UUID profileId,UUID partnerId);
 
 
+    @Modifying
     @Transactional
     @Query("update Message set deliveredDate=?1 where destinationUid=?2 and (deliveredDate is null or deliveredDate<=0)")
     void deliverMessages(Long date,UUID profileId);
 
+    @Modifying
     @Transactional
     @Query("update Message set readDate=?1 where destinationUid=?2 and (readDate is null or readDate<=0)")
     void readMessages(Long date,UUID profileId);
