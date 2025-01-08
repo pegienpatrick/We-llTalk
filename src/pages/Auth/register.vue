@@ -85,7 +85,7 @@
                                         label="Confirm Password"
                                         variant="outlined"
                                         :append-inner-icon="registerForm.showPassword?'mdi-eye-off':'mdi-eye'"
-                                        @click:append-inner="registerForm.value.showPassword=!registerForm.value.showPassword"
+                                        @click:append-inner="registerForm.showPassword=!registerForm.showPassword"
                                         :type="registerForm.showPassword?'text':'password'"
                                         
                                         v-model="registerForm.confirm_password"
@@ -113,7 +113,7 @@
                                     <VBtn
                                         text="Go To Login"
                                         variant="outlined"
-                                        to="/login"
+                                        to="/auth/login"
                                         
                                     />
                                 </VCol>
@@ -192,7 +192,7 @@ const registerProfile = ()=>{
         confirmButtonText: 'Go to Login',
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push('/login');
+          router.push('/auth/login');
         }
       });
         }

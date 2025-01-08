@@ -1,19 +1,15 @@
 export const routes = [
   {
-    path: '/',
-    redirect: '/chat'
-  },
-  {
-    path: '/auth/',
-    component: () => import('@/pages/auth.vue'),
+    path: 'auth',
+    component: () => import('@/pages/Auth/auth.vue'),
     children: [
       {
         path: 'login',
-        component: () => import('@/pages/login.vue')
+        component: () => import('@/pages/Auth/login.vue')
       },
       {
         path: 'register',
-        component: () => import('@/pages/register.vue')
+        component: () => import('@/pages/Auth/register.vue')
       },
     ],
   },
@@ -21,6 +17,10 @@ export const routes = [
     path:'/',
     component: () => import('@/pages/dashboard.vue'),
     children: [
+      {
+        path: '/chats',
+        component: () => import('@/pages/Chat/Chats.vue')
+      }
 
     ]
   }

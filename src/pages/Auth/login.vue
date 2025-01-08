@@ -62,7 +62,7 @@
                                         text="New Here ? Register An Account"
                                         color="warning"
                                         variant="outlined"
-                                        to="/register"
+                                        to="/auth/register"
                                         
                                     />
                                 </VCol>
