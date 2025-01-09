@@ -32,7 +32,7 @@ public class Token {
     @Column(columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean loggedOut;
 
-    private Long inActiveTime= TimeUnit.MINUTES.toMillis(10);
+    private Long inActiveTime= TimeUnit.HOURS.toMillis(1);
 
     public Boolean isUsable()
     {
