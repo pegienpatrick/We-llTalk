@@ -74,6 +74,8 @@ public class MessagesService {
         HashSet<UUID> listedChats = new HashSet<>();
         for(UUID partnerId:partnerIds)
         {
+            if(partnerId==null)
+                continue;
             ChatListResponse chatListResponse=new ChatListResponse();
             chatListResponse.setCounter(messagesRepository.chatsCounter(me.getUid(),partnerId));
             chatListResponse.setPartnerId(partnerId);
