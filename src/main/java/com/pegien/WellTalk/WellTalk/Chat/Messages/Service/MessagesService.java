@@ -70,6 +70,8 @@ public class MessagesService {
         for(UUID newChats:groupsMap.keySet())
             if(!partnerIds.contains(newChats))
                 partnerIds.add(newChats);
+
+        HashSet<UUID> listedChats = new HashSet<>();
         for(UUID partnerId:partnerIds)
         {
             ChatListResponse chatListResponse=new ChatListResponse();
@@ -124,6 +126,20 @@ public class MessagesService {
                 }
             }
             chatLists.add(chatListResponse);
+            listedChats.add(chatListResponse.getPartnerId());
+        }
+
+        for(Group group:myGroups)
+        {
+            if(!listedChats.contains(group.getUid())) {
+                ChatListResponse chatListResponse = new ChatListResponse();
+                chatListResponse.setCounter(messagesRepository.chatsCounter(me.getUid(), group.getUid()));
+                chatListResponse.setPartnerId(group.getUid());
+                chatListResponse.setPartnerType(MessageDestinationType.GROUP);
+
+                chatListResponse.setProfileName(group.getMembers()+" Members");
+                chatListResponse.setUsername(group.getTitle());
+            }
         }
         return chatLists;
     }
