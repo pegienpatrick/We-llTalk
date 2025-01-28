@@ -1,0 +1,13 @@
+package com.pegien.WellTalk.WellTalk;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class WellTalkApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
